@@ -88,7 +88,10 @@ function renderShows() {
         },
         effect: "fade",
         speed: 700,
-        navigation: false // hide arrows
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        }
     });
 }
 

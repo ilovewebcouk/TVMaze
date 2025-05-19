@@ -4,29 +4,26 @@
     <meta charset="UTF-8" />
     <title>TV Schedule App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-
-<!-- Hero Search -->
-<section class="hero bg-dark text-white py-5 text-center">
-    <div class="container">
-        <div class="hero-logo mb-4">
-            <img src="./assets/logo.svg" alt="TV Schedule Logo" class="img-fluid" />
+<header class="search-header py-3">
+    <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="./assets/logo.svg" alt="TV App Logo" />
         </div>
-        <h1 class="display-4 fw-bold">Find Your Next Favourite Show</h1>
-        <p class="lead mb-4">Search thousands of TV shows airing tonight and beyond</p>
-        <form class="row justify-content-center g-2" action="search.html" method="GET" target="_blank">
-            <div class="col-md-6 col-10">
-                <input type="search" class="form-control form-control-lg" name="q" placeholder="Search TV shows..." required />
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-warning btn-lg px-4" type="submit">Search</button>
+
+        <!-- Search Bar -->
+        <form class="flex-grow-1" action="search.html" method="GET" target="_blank">
+            <div class="input-group input-group-lg">
+                <input type="search" class="form-control search-input" name="q" placeholder="Search TV shows..." required />
+                <button class="btn btn-accent px-4" type="submit">Search</button>
             </div>
         </form>
     </div>
-</section>
+</header>
 
 <!-- Section Heading -->
 <div class="container my-5">
@@ -41,6 +38,8 @@
         <div class="heroSwiper-container flex-grow-1">
             <div class="swiper heroSwiper">
                 <div class="swiper-wrapper" id="shows-list"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
 
