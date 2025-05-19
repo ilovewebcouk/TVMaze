@@ -60,3 +60,88 @@ nav.navbar .nav-link:hover {
 .table th, .table td {
     vertical-align: middle;
 }
+
+.heroSwiper-container {
+    width: 100%;
+    max-width: 849px;
+    height: 500px;
+    position: relative;
+}
+
+.heroSwiper-container {
+    width: 100%;
+    max-width: 849px;
+    height: 500px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.heroSwiper {
+    height: 100%;
+}
+
+.hero-slide {
+    position: relative;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1) 60%);
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem 2rem;
+}
+
+.hero-overlay .container {
+    z-index: 2;
+    position: relative;
+}
+
+.up-next {
+    height: 500px;
+    overflow-y: auto;
+    background: linear-gradient(
+            0deg,
+            transparent 0%,
+            transparent 50%,
+            rgba(18, 18, 18, 0.7) 78%,
+            rgba(18, 18, 18, 1) 100%
+    );
+    position: relative;
+    border-radius: 1rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    display: none !important;
+}
+
+.up-next h5 {
+    font-weight: 600;
+    color: #f5c518;
+}
+
+@media (max-width: 992px) {
+    .heroSwiper-container {
+        max-width: 100%;
+    }
+
+    .up-next {
+        width: 100%;
+        height: auto;
+    }
+}}

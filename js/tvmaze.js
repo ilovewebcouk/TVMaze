@@ -1,7 +1,6 @@
 const today = new Date().toISOString().split('T')[0];
 const scheduleUrl = `https://api.tvmaze.com/schedule?country=GB&date=${today}`;
 let allSortedShows = [];
-let visibleCount = 3;
 
 async function fetchPopularShows() {
     try {
@@ -21,7 +20,7 @@ async function fetchPopularShows() {
         allSortedShows = shows.sort((a, b) => b.weight - a.weight);
 
         renderShows();
-        renderScheduleTable(data); // 👈 Render full schedule table
+        renderScheduleTable(data);
     } catch (error) {
         console.error("Fetch error:", error);
         document.getElementById('shows-list').innerHTML = `<p class="text-danger">Could not load shows.</p>`;
@@ -30,41 +29,75 @@ async function fetchPopularShows() {
 
 function renderShows() {
     const showList = document.getElementById('shows-list');
-    const limitedShows = allSortedShows.slice(0, visibleCount);
+    const upNextList = document.getElementById('up-next-list');
 
-    showList.innerHTML = limitedShows.map(show => {
-        const episode = show._episode;
+    const showsToDisplay = allSortedShows;
+
+    // Slider: Top 5 Shows
+    showList.innerHTML = showsToDisplay.slice(0, 5).map(show => {
+        const ep = show._episode;
+        const img = show.image?.original || show.image?.medium || 'https://via.placeholder.com/1200x600?text=No+Image';
         const rating = show.rating?.average ? `${show.rating.average} / 10` : "Not rated";
-        const epInfo = episode
-            ? `S${String(episode.season).padStart(2, '0')} · E${String(episode.number).padStart(2, '0')} — ${episode.name}`
-            : "Airing tonight";
+        const channel = show.network?.name || show.webChannel?.name || "N/A";
+        const airtime = ep.airtime || "TBA";
 
         return `
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <img src="${show.image?.medium || 'https://via.placeholder.com/210x295?text=No+Image'}" class="card-img-top" alt="${show.name}">
-          <div class="card-body">
-            <h5 class="card-title">${show.name}</h5>
-            <p class="card-text">
-              <strong>${epInfo}</strong><br>
-              Rating: ${rating}
-            </p>
-            <a href="show.html?id=${show.id}" class="btn btn-primary">View Show</a>          </div>
+      <div class="swiper-slide hero-slide" style="background-image: url('${img}');">
+        <div class="hero-overlay">
+          <div class="container text-white">
+            <h2 class="display-5 fw-bold">${show.name}</h2>
+            <p class="lead mb-1"><strong>${airtime}</strong> · ${channel}</p>
+            <p class="mb-3">Rating: ${rating}</p>
+            <a href="show.html?id=${show.id}" class="btn btn-warning btn-lg">View Show</a>
+          </div>
         </div>
       </div>
     `;
     }).join('');
 
-    const moreBtn = document.getElementById('more-shows-btn');
-    moreBtn.style.display = visibleCount >= allSortedShows.length ? 'none' : 'block';
+    // Sidebar: Next 3 Shows
+    upNextList.innerHTML = showsToDisplay.slice(5, 8).map(show => {
+        const ep = show._episode;
+        const img = show.image?.medium || 'https://via.placeholder.com/100x140?text=No+Image';
+        const channel = show.network?.name || show.webChannel?.name || "N/A";
+        const airtime = ep.airtime || "TBA";
+
+        return `
+      <div class="d-flex align-items-start gap-3">
+        <img src="${img}" class="rounded" style="width: 90px; height: 130px; object-fit: cover;" alt="${show.name}">
+        <div>
+          <h6 class="mb-1">${show.name}</h6>
+          <p class="mb-1 small text-white-50">${airtime} · ${channel}</p>
+          <a href="show.html?id=${show.id}" class="btn btn-sm btn-outline-light">View</a>
+        </div>
+      </div>
+    `;
+    }).join('');
+
+    // Init Swiper
+    if (window.heroSwiper) {
+        window.heroSwiper.destroy(true, true);
+    }
+
+    window.heroSwiper = new Swiper(".heroSwiper", {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: {
+            delay: 7000,
+            disableOnInteraction: false
+        },
+        effect: "fade",
+        speed: 700,
+        navigation: false // hide arrows
+    });
 }
 
 function renderScheduleTable(data) {
-    const allowedChannels = ["BBC One", "BBC Two", "ITV1", "Channel 4", "5"];
+    const allowedChannels = ["BBC One", "BBC Two", "ITV", "ITV1", "Channel 4", "Channel5", "Channel 5", "5"];
 
     const filtered = data.filter(ep => {
         const channel = ep.show.network?.name || ep.show.webChannel?.name || "";
-        const hour = parseInt(ep.airtime?.split(':')[0], 10); // e.g., "21:00" -> 21
+        const hour = parseInt(ep.airtime?.split(':')[0], 10);
         return allowedChannels.some(name => channel.toLowerCase().includes(name.toLowerCase())) && hour >= 18;
     });
 
@@ -95,10 +128,5 @@ function renderScheduleTable(data) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('more-shows-btn').addEventListener('click', () => {
-        visibleCount += 3;
-        renderShows();
-    });
-
     fetchPopularShows();
 });
