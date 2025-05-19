@@ -22,8 +22,7 @@ if (!query) {
               <img src="${show.image?.medium || 'https://via.placeholder.com/210x295?text=No+Image'}" class="card-img-top" alt="${show.name}">
               <div class="card-body">
                 <h5 class="card-title">${show.name}</h5>
-                <p class="card-text">Rating: ${show.rating?.average || 'N/A'}</p>
-                <a href="${show.officialSite || show.url}" class="btn btn-primary" target="_blank">More Info</a>
+                <p class="card-text">Rating: ${show.rating?.average || 'N/A'}</p><a href="show.html?id=${show.id}" class="btn btn-primary">View Show</a>
               </div>
             </div>
           </div>
