@@ -248,3 +248,22 @@ body {
 .table tbody tr:hover .schedule-show-link {
     text-decoration: underline;
 }
+
+.tab-content {
+    background-color: #fff;
+    color: #000;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.nav-tabs .nav-link {
+    color: #bbb;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #fff;
+    color: #000;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
