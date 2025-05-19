@@ -1,80 +1,53 @@
-/* General page settings */
+:root {
+    --accent: #f5c518;
+}
+
+/* General layout */
 body {
-    background-color: #000000; /* Dark background for the entire page */
-    color: #ffffff; /* White text for readability */
+    background-color: #000;
+    color: #fff;
+    font-family: system-ui, sans-serif;
 }
 
-/* Search bar input styling */
-#searchQuery {
-    background-color: #ffffff; /* White input field */
-    border: 1px solid #495057; /* Optional: Light gray border */
-    padding: 0.5rem; /* Add padding for a better look */
-    color: #000000; /* Black input text */
+.text-accent {
+    color: var(--accent);
 }
 
-/* Placeholder text */
-#searchQuery::placeholder {
-    color: #adb5bd; /* Subtle gray color for placeholder text */
+.section-heading {
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
-/* Button styling */
-#searchButton {
-    background-color: #f5c518; /* Green button (Bootstrap-compatible) */
-    color: #000000; /* White text */
-    border: none; /* No border */
+/* Search form */
+input[type="search"] {
+    background-color: #fff;
+    border: 1px solid #495057;
+    padding: 0.5rem;
+    color: #000;
 }
 
-/* Hover effect for button */
-#searchButton:hover {
-    background-color: #157347; /* Darker green when hovered */
+input[type="search"]::placeholder {
+    color: #adb5bd;
 }
 
-/* Navbar styling */
-nav.navbar {
-    background-color: #121212; /* Dark navbar color */
-    border-bottom: 2px solid #121212; /* Optional: Add a border at the bottom */
+button[type="submit"] {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
 }
 
-/* Links inside navbar */
-nav.navbar .nav-link {
-    color: #ffffff; /* Subtle gray for links */
+button[type="submit"]:hover {
+    background-color: #e0b800;
 }
 
-nav.navbar .nav-link:hover {
-    color: #e9e3e3; /* White link color when hovered */
-}
-
-/* Optional styling for results container */
-#results {
-    background-color: #000000; /* Slightly lighter dark background */
-    border-radius: 8px; /* Rounded corners */
-    padding: 10px; /* Internal space */
-}
-
-
-
-/*TV Schedule*/
-.card-text {
-    font-size: 0.9rem;
-}
-.table th, .table td {
-    vertical-align: middle;
-}
-
+/* Slider styles */
 .heroSwiper-container {
     width: 100%;
     max-width: 849px;
     height: 500px;
     position: relative;
-}
-
-.heroSwiper-container {
-    width: 100%;
-    max-width: 849px;
-    height: 500px;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     border-radius: 1rem;
     overflow: hidden;
 }
@@ -99,7 +72,7 @@ nav.navbar .nav-link:hover {
     left: 0;
     right: 0;
     height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1) 60%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1) 60%);
     z-index: 1;
     display: flex;
     align-items: flex-end;
@@ -111,6 +84,7 @@ nav.navbar .nav-link:hover {
     position: relative;
 }
 
+/* Up Next Sidebar */
 .up-next {
     height: 500px;
     overflow-y: auto;
@@ -121,18 +95,19 @@ nav.navbar .nav-link:hover {
             rgba(18, 18, 18, 0.7) 78%,
             rgba(18, 18, 18, 1) 100%
     );
-    position: relative;
     border-radius: 1rem;
 }
 
+/* Swiper nav arrows */
 .swiper-button-next,
 .swiper-button-prev {
     display: none !important;
 }
 
-.up-next h5 {
-    font-weight: 600;
-    color: #f5c518;
+/* Table spacing */
+.table th,
+.table td {
+    vertical-align: middle;
 }
 
 @media (max-width: 992px) {
@@ -144,4 +119,19 @@ nav.navbar .nav-link:hover {
         width: 100%;
         height: auto;
     }
-}}
+}
+
+/* Logo SVG */
+.logo img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        max-width: 150px;
+    }
+}
