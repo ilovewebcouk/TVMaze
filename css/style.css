@@ -50,3 +50,13 @@ nav.navbar .nav-link:hover {
     border-radius: 8px; /* Rounded corners */
     padding: 10px; /* Internal space */
 }
+
+
+
+/*TV Schedule*/
+.card-text {
+    font-size: 0.9rem;
+}
+.table th, .table td {
+    vertical-align: middle;
+}
