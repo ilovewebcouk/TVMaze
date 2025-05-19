@@ -1,0 +1,52 @@
+/* General page settings */
+body {
+    background-color: #000000; /* Dark background for the entire page */
+    color: #ffffff; /* White text for readability */
+}
+
+/* Search bar input styling */
+#searchQuery {
+    background-color: #ffffff; /* White input field */
+    border: 1px solid #495057; /* Optional: Light gray border */
+    padding: 0.5rem; /* Add padding for a better look */
+    color: #000000; /* Black input text */
+}
+
+/* Placeholder text */
+#searchQuery::placeholder {
+    color: #adb5bd; /* Subtle gray color for placeholder text */
+}
+
+/* Button styling */
+#searchButton {
+    background-color: #f5c518; /* Green button (Bootstrap-compatible) */
+    color: #000000; /* White text */
+    border: none; /* No border */
+}
+
+/* Hover effect for button */
+#searchButton:hover {
+    background-color: #157347; /* Darker green when hovered */
+}
+
+/* Navbar styling */
+nav.navbar {
+    background-color: #121212; /* Dark navbar color */
+    border-bottom: 2px solid #121212; /* Optional: Add a border at the bottom */
+}
+
+/* Links inside navbar */
+nav.navbar .nav-link {
+    color: #ffffff; /* Subtle gray for links */
+}
+
+nav.navbar .nav-link:hover {
+    color: #e9e3e3; /* White link color when hovered */
+}
+
+/* Optional styling for results container */
+#results {
+    background-color: #000000; /* Slightly lighter dark background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Internal space */
+}
