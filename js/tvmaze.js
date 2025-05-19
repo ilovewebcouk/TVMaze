@@ -116,8 +116,11 @@ function renderScheduleTable(data) {
       <tr>
         <td>${time}</td>
         <td>${channel}</td>
-        <td>${ep.show.name}</td>
-        <td>${ep.name}</td>
+<td>
+  <a href="show.html?id=${ep.show.id}" class="schedule-show-link">
+    ${ep.show.name}
+  </a>
+</td>        <td>${ep.name}</td>
         <td>${ep.season}</td>
         <td>${ep.number}</td>
         <td>${ep.runtime} min</td>

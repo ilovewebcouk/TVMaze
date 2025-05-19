@@ -19,6 +19,38 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Navbar + Search Styles */
+.navbar {
+    background-color: #121212;
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+}
+
+.search-input {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+.search-input::placeholder {
+    color: #888;
+}
+
+.btn-accent {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+}
+
+.btn-accent:hover {
+    background-color: #e0b800;
+}
+
 /* Search Header Styles */
 .search-header {
     background-color: #121212;
@@ -197,4 +229,22 @@ body {
         width: 100%;
         height: auto;
     }
+}
+
+/* Table row hover effect */
+.table tbody tr:hover {
+    background-color: #2c2c2c; /* Subtle dark grey */
+    transition: background-color 0.2s ease;
+}
+
+/* Style the link like normal text */
+.schedule-show-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Optional underline on hover */
+.table tbody tr:hover .schedule-show-link {
+    text-decoration: underline;
 }
