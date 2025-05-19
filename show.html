@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 id="show-title" class="mb-4 text-center"></h1>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="showTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="main-tab" data-bs-toggle="tab" data-bs-target="#main" type="button" role="tab">Main</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="cast-tab" data-bs-toggle="tab" data-bs-target="#cast" type="button" role="tab">Cast</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="crew-tab" data-bs-toggle="tab" data-bs-target="#crew" type="button" role="tab">Crew</button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content p-4 border border-top-0" id="showTabsContent">
+        <div class="tab-pane fade show active" id="main" role="tabpanel">
+            <div id="main-content" class="row"></div>
+        </div>
+        <div class="tab-pane fade" id="cast" role="tabpanel">
+            <div class="row" id="cast-content"></div>
+        </div>
+        <div class="tab-pane fade" id="crew" role="tabpanel">
+            <div class="row" id="crew-content"></div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/show.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

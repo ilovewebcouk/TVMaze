@@ -21,6 +21,7 @@ async function fetchPopularShows() {
         allSortedShows = shows.sort((a, b) => b.weight - a.weight);
 
         renderShows();
+        renderScheduleTable(data); // 👈 Render full schedule table
     } catch (error) {
         console.error("Fetch error:", error);
         document.getElementById('shows-list').innerHTML = `<p class="text-danger">Could not load shows.</p>`;
@@ -48,8 +49,7 @@ function renderShows() {
               <strong>${epInfo}</strong><br>
               Rating: ${rating}
             </p>
-            <a href="${show.officialSite || show.url}" target="_blank" class="btn btn-primary">View Show</a>
-          </div>
+            <a href="show.html?id=${show.id}" class="btn btn-primary">View Show</a>          </div>
         </div>
       </div>
     `;
@@ -57,6 +57,41 @@ function renderShows() {
 
     const moreBtn = document.getElementById('more-shows-btn');
     moreBtn.style.display = visibleCount >= allSortedShows.length ? 'none' : 'block';
+}
+
+function renderScheduleTable(data) {
+    const allowedChannels = ["BBC One", "BBC Two", "ITV1", "Channel 4", "5"];
+
+    const filtered = data.filter(ep => {
+        const channel = ep.show.network?.name || ep.show.webChannel?.name || "";
+        const hour = parseInt(ep.airtime?.split(':')[0], 10); // e.g., "21:00" -> 21
+        return allowedChannels.some(name => channel.toLowerCase().includes(name.toLowerCase())) && hour >= 18;
+    });
+
+    const tableBody = document.getElementById('schedule-table-body');
+    tableBody.innerHTML = filtered.map(ep => {
+        const time = new Date(`${ep.airdate}T${ep.airtime}`).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        const channel = ep.show.network?.name || ep.show.webChannel?.name || "N/A";
+
+        return `
+      <tr>
+        <td>${time}</td>
+        <td>${channel}</td>
+        <td>${ep.show.name}</td>
+        <td>${ep.name}</td>
+        <td>${ep.season}</td>
+        <td>${ep.number}</td>
+        <td>${ep.runtime} min</td>
+      </tr>
+    `;
+    }).join('');
+
+    if (filtered.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No evening shows found on selected channels.</td></tr>`;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
